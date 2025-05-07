@@ -1,0 +1,19 @@
+[user]
+    name = Alex Lehman
+    email = alexlehman99@proton.me
+
+[core]
+    editor = nvim 
+    excludesfile = /home/alex99/.gitignore_global
+
+[fetch]
+    prune = true
+
+[status]
+    short = true
+
+[push]
+	autoSetupRemote = true
+
+[pull]
+	rebase = false

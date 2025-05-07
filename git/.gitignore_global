@@ -1,0 +1,51 @@
+# Cache files automatically created by Python when one of the python scripts
+# is run.
+__pycache__/
+
+# VSCode config files
+.vscode
+
+# Directories containing output files from distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+results/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Output files from unit testing
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+files.txt
+
+# Environments
+.env
+.venv
+env/
+*venv/
+ENV/
+env.bak/
+venv.bak/
