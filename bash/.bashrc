@@ -92,6 +92,16 @@ mkdirg() {
 	cd "$1"
 }
 
+# shell wrapper that provides the ability to change the current working directory when exiting Yazi
+yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 eval "$(fzf --bash)"
