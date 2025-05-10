@@ -1,5 +1,6 @@
 return {
     'nvim-telescope/telescope.nvim',
+    version = "*",
     cmd = { "Telescope" }, -- Plugin loads only when you run :Telescope
     keys = {
         { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },

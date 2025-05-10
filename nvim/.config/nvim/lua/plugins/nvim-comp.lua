@@ -1,5 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
+    version = "*",
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",    -- LSP source

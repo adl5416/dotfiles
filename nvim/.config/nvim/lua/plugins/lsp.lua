@@ -2,6 +2,7 @@ return {
     -- Mason: LSP Installer
     {
         "williamboman/mason.nvim",
+        version = "*",
         config = function()
             require("mason").setup()
         end
@@ -10,6 +11,7 @@ return {
     -- Mason-LSPConfig: Ensures installed LSPs integrate with nvim-lspconfig
     {
         "williamboman/mason-lspconfig.nvim",
+        version = "*",
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup {
@@ -26,6 +28,7 @@ return {
     -- LSPConfig: Configures LSPs for Neovim
     {
         "neovim/nvim-lspconfig",
+        version = "*",
         dependencies = { "williamboman/mason-lspconfig.nvim" },
         config = function()
             local lspconfig = require("lspconfig")

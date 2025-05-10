@@ -1,5 +1,6 @@
 return {
   "tpope/vim-fugitive",
+  version = "*",
   cmd = { "Git", "G" }, -- Load only when running Git commands
   keys = {
     -- Git Status & Commit
