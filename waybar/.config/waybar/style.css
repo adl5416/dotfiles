@@ -55,7 +55,7 @@ tooltip {
     color: #f16da6;
 }
 
-#clock, #pulseaudio, #workspaces, #tray {
+#backlight, #battery, #clock, #pulseaudio, #workspaces, #tray {
     padding: 0px 15px;
     background: #282828;
     margin-top: 5px;
@@ -71,8 +71,8 @@ tooltip {
 }
 
 #pulseaudio {
-    margin-right: -15px;
-    margin-left: -15px;
+    margin-right: -5px;
+    margin-left: -5px;
 }
 
 #clock {
@@ -81,3 +81,12 @@ tooltip {
     border-radius: 0px 15px 15px 0px;
 }
 
+#backlight {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+#battery {
+    margin-right: -5px;
+    margin-left: -5px;
+}
