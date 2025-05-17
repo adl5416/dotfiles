@@ -105,3 +105,8 @@ yz() {
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 eval "$(fzf --bash)"
+
+# Run hyprland at startup managed by uwsm
+if uwsm check may-start; then
+    exec uwsm start hyprland.desktop
+fi

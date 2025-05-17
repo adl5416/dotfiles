@@ -21,6 +21,7 @@ packages=(
     trash-cli
     tree
     unzip
+    uwsm
     waybar
     wofi
     yazi

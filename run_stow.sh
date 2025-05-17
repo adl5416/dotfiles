@@ -15,6 +15,7 @@ stow_packages=(
     nvim
     starship
     tmux
+    uwsm
     waybar
     wofi
 )
