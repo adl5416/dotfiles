@@ -84,3 +84,6 @@ vim.opt.backup = false              -- Disable backup files
  -- Enable hybrid line numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+-- Do not wrap lines
+vim.opt.wrap = false
