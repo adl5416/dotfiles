@@ -10,7 +10,7 @@ return {
   config = function()
     require("neo-tree").setup({
       filesystem = {
-        follow_current_file = true, -- Highlight the current file in the tree
+        follow_current_file = { enabled = true }, -- Highlight the current file in the tree
         use_libuv_file_watcher = true, -- Update tree when files change
       },
       window = {
