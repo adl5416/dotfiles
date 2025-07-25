@@ -9,17 +9,5 @@ return {
         { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
         { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
     },
-    opts = { -- Add options here
-        defaults = {
-            mappings = {
-                i = {  -- Insert mode mappings
-                    ["<C-\\>"] = require("telescope.actions").select_vertical,  -- Open in vertical split
-                    ["<C-|>"] = require("telescope.actions").select_vertical,  --- Open in vertical split
-                    ["<C-_>"] = require("telescope.actions").select_horizontal, -- Open in horizontal split
-                    ["<C-->"] = require("telescope.actions").select_horizontal, -- Open in horizontal split
-                },
-            }
-        }
-    }
 }
 
