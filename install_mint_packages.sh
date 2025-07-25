@@ -14,6 +14,7 @@ packages=(
     lazydocker
     lazygit
     mako
+    ouch
     starship
     stow
     tar

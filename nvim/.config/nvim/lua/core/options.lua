@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -84,3 +84,6 @@ vim.opt.backup = false              -- Disable backup files
  -- Enable hybrid line numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+-- Do not wrap lines
+vim.opt.wrap = false
