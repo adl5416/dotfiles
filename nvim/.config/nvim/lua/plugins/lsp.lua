@@ -13,16 +13,6 @@ return {
         "williamboman/mason-lspconfig.nvim",
         version = "*",
         dependencies = { "williamboman/mason.nvim" },
-        config = function()
-            require("mason-lspconfig").setup {
-                ensure_installed = {
-                    "clangd", "pyright", "rust_analyzer", "gopls", "ts_ls", "lua_ls", "jdtls",
-                    "html", "cssls", "jsonls", "yamlls",
-                    "dockerls", "bashls", "terraformls",
-                    "intelephense", "kotlin_language_server", "solargraph"
-                }
-            }
-        end
     },
 
     -- LSPConfig: Configures LSPs for Neovim
