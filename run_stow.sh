@@ -18,6 +18,7 @@ stow_packages=(
     uwsm
     waybar
     wofi
+    yazi
 )
 
 for package in "${stow_packages[@]}"; do
