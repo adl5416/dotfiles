@@ -17,6 +17,7 @@ stow_packages=(
     tmux
     waybar
     wofi
+    yazi
 )
 
 for package in "${stow_packages[@]}"; do
