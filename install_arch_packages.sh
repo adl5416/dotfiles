@@ -1,8 +1,10 @@
 packages=(
     bash-completion
     bat
+    btop
     eza
     fastfetch
+    fd
     fzf
     ghostty
     git
