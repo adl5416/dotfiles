@@ -12,16 +12,9 @@ alias less="less -R"
 alias c="clear"
 alias cpd="cp -ri"
 alias egrep="egrep --color=auto"
-alias f="find . | grep"
 alias grep="grep --color=auto"
-alias hist="history"
-alias h="history | grep"
-alias j="jobs -l"
+alias h="history"
 alias mvd="mv -ri"
-alias f="find . | grep "
-alias p="ps aux | grep "
-alias pu="pushd"
-alias po="popd"
 alias rmd="rm --recursive --force --verbose"
 
 # Alias's for multiple directory listing commands
@@ -35,10 +28,6 @@ alias mx="chmod a+x"
 # List serial devices
 alias lser="l /dev/serial/by-id"
 
-# Reboot aliases
-alias reboot="systemctl reboot"
-alias shutdown="systemctl poweroff"
-
 # Alias's to show disk space and space used in a folder
 alias tree="tree -CAhF --dirsfirst"
 alias treed="tree -CAFd"
@@ -50,12 +39,8 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
-# cd into the old directory
-alias bd="cd '$OLDPWD'"
-
 # Python aliases
 alias py="python3"
-alias venv="source venv/bin/activate"
 alias dvenv="deactivate"
 
 # Tmux aliases
