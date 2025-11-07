@@ -1,8 +1,10 @@
 packages=(
     bash-completion
     bat
+    btop
     eza
     fastfetch
+    fd
     fzf
     ghostty
     git
@@ -22,6 +24,7 @@ packages=(
     trash-cli
     tree
     unzip
+    uwsm
     waybar
     wofi
     yazi
