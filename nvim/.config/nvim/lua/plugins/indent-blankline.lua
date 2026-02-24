@@ -1,5 +1,7 @@
 return {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    version = "*",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
 }
