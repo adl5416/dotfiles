@@ -14,6 +14,13 @@ return {
         use_libuv_file_watcher = true, -- Update tree when files change
       },
       window = {
+          mappings = {
+              ["l"] = "toggle_node",  -- Use 'l' to open a file or enter a directory
+              ["h"] = "close_node",    -- Use 'h' to close an open directory node
+              ["H"] = "",              -- Remove H from toggling hidden
+              ["."] = "toggle_hidden", -- Map . to toggle hidden
+
+        },
         width = 30, -- Set the width of the file explorer
       },
     })
