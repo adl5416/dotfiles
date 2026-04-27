@@ -15,6 +15,13 @@ vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Dedent selection" })
 vim.keymap.set("n", ">>", "<Nop>")
 vim.keymap.set("n", "<<", "<Nop>")
 
+-- Save / Quit (common GUI keybinds)
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>up<CR>", { desc = "Save" })
+vim.keymap.set({ "n", "i", "v" }, "<C-S-s>", "<cmd>wa<CR>", { desc = "Save all" })
+vim.keymap.set({ "n", "i", "v" }, "<C-c>", "<cmd>q<CR>", { desc = "Quit" })
+vim.keymap.set({ "n", "i", "v" }, "<C-M-c>", "<cmd>qa!<CR>", { desc = "Force quit all" })
+vim.keymap.set({ "n", "i", "v" }, "<C-w>", "<cmd>wqa<CR>", { desc = "Save all and quit" })
+
 -- LSP
 -- Go to definition
 vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
