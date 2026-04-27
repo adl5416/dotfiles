@@ -2,15 +2,14 @@ return {
     "CRAG666/code_runner.nvim",
     cmd = { "RunCode", "RunFile", "RunProject", "RunClose" },
     keys = {
-        { "<leader>rr", "<cmd>RunCode<cr>", desc = "Run Code" },
+        { "<leader>rc", "<cmd>RunCode<cr>", desc = "Run Code" },
         { "<leader>rf", "<cmd>RunFile<cr>", desc = "Run File" },
         { "<leader>rp", "<cmd>RunProject<cr>", desc = "Run Project" },
-        { "<leader>rc", "<cmd>RunClose<cr>", desc = "Run Close" },
     },
     opts = {
         mode = "term",
         focus = true,
-        startinsert = true,
+        startinsert = false,
         filetype = {
             python = "python3 -u",
             typescript = "deno run",
