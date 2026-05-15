@@ -11,6 +11,7 @@ stow_packages=(
     hyprland
     hyprlock
     hyprpaper
+    kiro
     mako
     nvim
     starship
