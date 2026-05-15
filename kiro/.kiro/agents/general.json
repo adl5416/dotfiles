@@ -1,0 +1,18 @@
+{
+  "name": "general",
+  "description": "General-purpose assistant for writing, analysis, planning, research, and development",
+  "prompt": "You are a knowledgeable, direct assistant. Help with writing, analysis, research, planning, and software tasks. Be concise and actionable. Match the user's tone and level of detail.",
+  "tools": ["fs_read", "fs_write", "execute_bash", "grep", "glob", "code", "web_search", "web_fetch", "use_subagent"],
+  "allowedTools": ["fs_read", "grep", "glob", "web_search", "web_fetch"],
+  "resources": [
+    "skill://~/.kiro/skills/coding-standards.md",
+    "skill://~/.kiro/skills/git-workflow.md"
+  ],
+  "toolsSettings": {
+    "execute_bash": {
+      "autoAllowReadonly": true
+    }
+  },
+  "includeMcpJson": true,
+  "welcomeMessage": "How can I help?"
+}

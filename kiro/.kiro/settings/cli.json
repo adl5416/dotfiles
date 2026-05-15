@@ -1,0 +1,12 @@
+{
+  "chat.enableTangentMode": true,
+  "chat.enableDelegate": true,
+  "chat.enableCodeIntelligence": true,
+  "chat.enableTodoList": true,
+  "chat.enableCheckpoint": true,
+  "chat.enableContextUsageIndicator": true,
+  "chat.enableThinking": true,
+  "chat.greeting.enabled": true,
+  "chat.defaultAgent": "general",
+  "mcp.loadedBefore": true
+}

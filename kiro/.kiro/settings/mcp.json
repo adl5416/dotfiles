@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "gitlab": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+      "env": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_TOKEN}",
+        "GITLAB_API_URL": "https://gitlab.uk.cambridgeconsultants.com"
+      }
+    },
+    "jira": {
+      "command": "npx",
+      "args": ["-y", "mcp-jira-confluence"],
+      "env": {
+        "JIRA_BASE_URL": "https://jira.iridium.com",
+        "JIRA_EMAIL": "alex.lehman@iridium.com",
+        "JIRA_API_TOKEN": "${JIRA_TOKEN}"
+      }
+    },
+    "aws-api": {
+      "command": "uvx",
+      "args": [
+        "awslabs.aws-api-mcp-server@latest"
+      ],
+      "env": {
+        "AWS_REGION": "us-west-2",
+        "AWS_PROFILE": "isllc-336701967277-AWSAdministratorAccess",
+        "FASTMCP_LOG_LEVEL": "INFO"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "call_aws"
+      ]
+    }
+  }
+}
