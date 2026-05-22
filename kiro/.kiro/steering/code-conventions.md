@@ -8,7 +8,7 @@ description: Coding standards and style conventions. Use when writing, reviewing
 - Put type annotations on all function declarations
 - Prefer dataclasses or Pydantic for structured data
 - Use pytest for testing, not unittest
-- Use docstrings on all public functions (Google style)
+- Use docstrings on all functions (Google style)
 - Prefer f-strings over .format() or %
 - Use pathlib over os.path
 - Prefer list/dict comprehensions when readable
