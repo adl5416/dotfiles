@@ -1,0 +1,14 @@
+Create an ATRR PowerPoint deck for Launch Pad IDK vX.X.X by updating the previous version deck.
+
+Source deck: /home/alex99/Downloads/IRDM-1023-TREP-013 v1.0 - 9704 Launch Pad SDK vX.X.X Test Rollup Report.pptx
+
+Release folder: /home/alex99/Downloads/Launch-Pad-IDKs-X.X.X-DDMMYY-XXXXXXXX/9604-IDK-X.X.X-DDMMYY-XXXXXXXX
+
+Updates needed:
+1. Replace old version (X.X.X) with new version (Y.Y.Y)
+2. Extract build hash from release folder name and replace all instances
+3. Update test date on Slide 1 to [TEST_DATE]
+4. Update all dates in test domains results summary to [TEST_DATE]
+5. Mark domains as tested or SKIPPED (only first two domains tested, last two skipped)
+
+Save as: /home/alex99/Downloads/IRDM-1023-TREP-013 v1.0 - 9704 Launch Pad SDK vY.Y.Y Test Rollup Report.pptx

@@ -2,13 +2,19 @@
   "name": "writer",
   "description": "Technical writing — docs, READMEs, specs, proposals",
   "prompt": "You are a technical writer. Focus on clarity, structure, and audience-appropriate language. Use active voice, short sentences, and concrete examples. Ask about the audience if unclear.",
-  "tools": ["fs_read", "fs_write", "grep", "glob", "web_search", "web_fetch"],
+  "tools": ["fs_read", "fs_write", "grep", "glob", "web_search", "web_fetch", "shell"],
+  "toolsSettings": {
+    "shell": {
+      "autoAllowReadonly": true
+    }
+  },
   "allowedTools": ["fs_read", "grep", "glob", "web_search", "web_fetch"],
   "resources": [
     "file://../steering/writing.md",
     "file://../skills/jira-tickets.md",
     "file://../skills/merge-request.md",
-    "file://../skills/powerpoint.md"
+    "file://../skills/iridium-powerpoint.md",
+    "file://../skills/atrr-deck.md"
   ],
   "includeMcpJson": true,
   "model": "claude-haiku-4.5",
