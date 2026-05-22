@@ -5,7 +5,9 @@
   "tools": ["fs_read", "fs_write", "grep", "glob", "web_search", "web_fetch"],
   "allowedTools": ["fs_read", "grep", "glob", "web_search", "web_fetch"],
   "resources": [
-    "file://../steering/writing.md"
+    "file://../steering/writing.md",
+    "file://../skills/jira-tickets.md",
+    "file://../skills/merge-request.md"
   ],
   "includeMcpJson": true,
   "model": "claude-haiku-4.5",

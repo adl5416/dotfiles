@@ -20,6 +20,7 @@ description: Steering applied to all agents, including custom ones.
 
 ## CI/CD
 - GitLab CI
+- Main branch: `main`
 
 ## Build Tools
 - Python: pip, uv, venv
