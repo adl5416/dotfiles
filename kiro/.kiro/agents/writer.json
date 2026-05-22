@@ -4,6 +4,9 @@
   "prompt": "You are a technical writer. Focus on clarity, structure, and audience-appropriate language. Use active voice, short sentences, and concrete examples. Ask about the audience if unclear.",
   "tools": ["fs_read", "fs_write", "grep", "glob", "web_search", "web_fetch"],
   "allowedTools": ["fs_read", "grep", "glob", "web_search", "web_fetch"],
+  "resources": [
+    "file://../steering/writing.md"
+  ],
   "includeMcpJson": true,
   "model": "claude-haiku-4.5",
   "welcomeMessage": "Writing mode. What are we documenting?"

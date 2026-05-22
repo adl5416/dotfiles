@@ -1,6 +1,6 @@
 ---
-name: devops-patterns
-description: DevOps conventions for CI/CD, containers, and infrastructure. Use when writing pipelines, Dockerfiles, or deployment configs.
+name: devops
+description: DevOps pattern and conventions for CI/CD, containers, and infrastructure. Use when writing pipelines, Dockerfiles, or deployment configs.
 ---
 
 ## Docker

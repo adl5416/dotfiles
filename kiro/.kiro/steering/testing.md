@@ -1,5 +1,5 @@
 ---
-name: testing-patterns
+name: testing
 description: Testing patterns and expectations. Use when writing, reviewing, or discussing tests.
 ---
 

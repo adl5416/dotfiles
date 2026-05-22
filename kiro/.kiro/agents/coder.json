@@ -2,15 +2,14 @@
   "name": "coder",
   "description": "Software development across all languages",
   "prompt": "You are an expert software developer. Adapt to whatever language and framework is in use. Write idiomatic, well-tested, production-quality code. Prefer simple solutions over clever ones. When debugging, reproduce the issue first, identify root cause, then fix. Always run tests after changes.",
-  "tools": ["fs_read", "fs_write", "execute_bash", "grep", "glob", "code", "use_subagent"],
-  "allowedTools": ["fs_read", "grep", "glob", "code", "web_search", "web_fetch"],
+  "tools": ["read", "write", "shell", "grep", "glob", "code", "subagent"],
+  "allowedTools": ["read", "grep", "glob", "code", "web_search", "web_fetch"],
   "resources": [
-    "skill://~/.kiro/skills/git-workflow.md",
-    "skill://~/.kiro/skills/coding-standards.md",
-    "skill://~/.kiro/skills/testing-patterns.md"
+    "file://../steering/coding.md",
+    "file://../steering/testing.md"
   ],
   "toolsSettings": {
-    "execute_bash": {
+    "shell": {
       "autoAllowReadonly": true
     }
   },

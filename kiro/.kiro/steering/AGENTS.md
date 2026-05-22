@@ -1,22 +1,12 @@
-# Preferences
+---
+name: AGENTS
+description: Steering applied to all agents, including custom ones.
+---
 
-## Communication
+# Communication
 - Be terse. No filler, no fluff.
-- Use simple words. Prose is fine.
+- Use simple words.
 - Skip obvious explanations.
-- Don't over-qualify or hedge.
-
-## Code
-- Don't add comments that restate what the code does.
-- Show diffs or changes inline when possible.
-- Prefer complete working examples over fragments.
-
-## Documentation
-- Use Sphinx (reStructuredText) for project docs
-- AsciiDoc for design/planning documents
-- Markdown for READMEs and lightweight docs
-- Google-style docstrings in Python
-- Keep docs next to the code they describe
 
 # Tech Stack
 
