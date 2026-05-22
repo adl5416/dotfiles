@@ -10,11 +10,12 @@
   },
   "allowedTools": ["fs_read", "grep", "glob", "web_search", "web_fetch"],
   "resources": [
-    "file://../steering/writing.md",
+    "file://../steering/writing_conventions.md",
     "file://../skills/jira-tickets.md",
     "file://../skills/merge-request.md",
     "file://../skills/iridium-powerpoint.md",
-    "file://../skills/atrr-deck.md"
+    "file://../skills/atrr-deck.md",
+    "file://../skills/partner-doc.md"
   ],
   "includeMcpJson": true,
   "model": "claude-haiku-4.5",
