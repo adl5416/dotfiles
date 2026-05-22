@@ -7,7 +7,8 @@
   "resources": [
     "file://../steering/writing.md",
     "file://../skills/jira-tickets.md",
-    "file://../skills/merge-request.md"
+    "file://../skills/merge-request.md",
+    "file://../skills/powerpoint.md"
   ],
   "includeMcpJson": true,
   "model": "claude-haiku-4.5",
