@@ -1,0 +1,9 @@
+Draft a merge request for the following changes:
+
+Repository: [REPO_PATH]
+Branch: [BRANCH_NAME]
+Related ticket: [PROJ-XXX]
+
+[DESCRIBE WHAT CHANGED AND WHY, OR POINT TO THE DIFF]
+
+Produce a Title and Description with What changed, Why, How to test, Related issues, and Checklist. Output in a single fenced code block ready to copy-paste.

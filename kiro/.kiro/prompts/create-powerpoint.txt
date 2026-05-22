@@ -1,0 +1,9 @@
+Create an Iridium-branded PowerPoint presentation.
+
+Topic: [TOPIC]
+Audience: [AUDIENCE]
+Slide count: [N] slides (approximate)
+
+Generate a content.json with appropriate slide types (section, content, two_content, closing) and run the generator script to produce the .pptx.
+
+Save as: /home/alex99/Downloads/[FILENAME].pptx
