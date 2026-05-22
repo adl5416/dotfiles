@@ -7,9 +7,10 @@ description: "Use this skill when the user wants to create an Iridium-branded Po
 
 Generate Iridium-branded `.pptx` files using the generator script and official template.
 
-## Template
+## Templates
 
 Path: `~/.kiro/templates/iridium_powerpoint_template.pptx`
+Path: `~/Code/Iridium/Documentation/Partner/partner/docs/misc/R&D/templates/Iridium_Presentation_Template.pptx`
 
 ## Generator Script
 
