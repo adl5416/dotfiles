@@ -3,6 +3,10 @@ name: AGENTS
 description: Steering applied to all agents, including custom ones.
 ---
 
+# Information
+- Software Developer
+- Works at Iridium Satellite
+
 # Communication
 - Be terse. No filler, no fluff.
 - Use simple words.
@@ -23,7 +27,7 @@ description: Steering applied to all agents, including custom ones.
 - Main branch: `main`
 
 ## Build Tools
-- Python: pip, uv, venv
+- Python: uv
 - C++: CMake, GNU
 
 # Projects
