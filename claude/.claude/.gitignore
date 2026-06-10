@@ -1,6 +1,8 @@
 .credentials.json
 .last-cleanup
+.last-update-result.json
 mcp-needs-auth-cache.json
+settings.local.json
 backups/
 cache/
 daemon/
@@ -12,6 +14,7 @@ file-history/
 history.jsonl
 instructions/
 jobs/
+paste-cache/
 plans/
 plugins/
 projects/
