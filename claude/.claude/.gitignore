@@ -1,4 +1,6 @@
 .credentials.json
+.last-cleanup
+mcp-needs-auth-cache.json
 backups/
 cache/
 daemon/
@@ -13,6 +15,8 @@ jobs/
 plans/
 plugins/
 projects/
+security/
 session-env/
 sessions/
 shell-snapshots/
+tasks/
