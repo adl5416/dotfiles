@@ -5,6 +5,7 @@ set -e
 stow_packages=(
     backgrounds
     bash
+    claude
     ghostty
     git
     hypridle
