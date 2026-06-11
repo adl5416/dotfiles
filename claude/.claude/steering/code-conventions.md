@@ -12,6 +12,7 @@ description: Coding standards and style conventions. Use when writing, reviewing
 - Prefer f-strings over .format() or %
 - Use pathlib over os.path
 - Prefer list/dict comprehensions when readable
+- Prefer uv over pip
 
 ## C/C++
 - Use Modern C++17/20
