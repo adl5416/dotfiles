@@ -19,5 +19,8 @@
     "claude-hud@claude-hud": true
   },
   "skipDangerousModePermissionPrompt": true,
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
   "theme": "auto"
 }
