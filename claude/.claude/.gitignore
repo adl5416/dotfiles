@@ -23,3 +23,5 @@ session-env/
 sessions/
 shell-snapshots/
 tasks/
+context-mode/
+hooks/
