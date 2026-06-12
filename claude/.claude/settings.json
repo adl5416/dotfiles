@@ -8,7 +8,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"/home/alex99/.claude/hooks/context-mode-cache-heal.mjs\""
+            "command": "/home/alex99/.claude/hooks/context-mode-cache-heal.mjs"
           }
         ]
       }
