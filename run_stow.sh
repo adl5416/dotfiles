@@ -8,6 +8,7 @@ stow_packages=(
     claude
     ghostty
     git
+    herdr
     hypridle
     hyprland
     hyprlock
