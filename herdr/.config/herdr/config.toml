@@ -1,3 +1,4 @@
+onboarding = false
 [ui]
 agent_panel_sort = "spaces"
 show_agent_labels_on_pane_borders = false
@@ -5,6 +6,7 @@ show_agent_labels_on_pane_borders = false
 [keys]
 prefix = "ctrl+space"
 new_tab = "prefix+w"
+toggle_sidebar = "prefix+e"
 
 [theme]
 name = "terminal"
