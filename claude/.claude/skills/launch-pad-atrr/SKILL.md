@@ -12,12 +12,16 @@ Also invoke the `document-skills:pptx` skill — this skill handles the *what to
 ## Overview
 
 Two phases:
-1. **Auto-discovery** — use Playwright to pull the latest version string, all SharePoint links, and all Jira links from live systems. Requires active browser sessions for SharePoint and Jira.
+1. **Auto-discovery** — use the `agent-browser` skill (per global tool preference — not raw Playwright/browser MCP tools) to pull the latest version string, all SharePoint links, and all Jira links from live systems. Requires active browser sessions for SharePoint and Jira.
 2. **Manual input** — ask the user only for the four things that can't be fetched: test domain results, exceptions, attendee changes, and the template PPTX path.
+
+### Browser session reliability
+
+SharePoint/Jira SSO login needs a human. If the host has a real display (check `echo $DISPLAY`; `xdpyinfo >/dev/null 2>&1` to confirm it's reachable), launch `agent-browser` with `--headed` and that `DISPLAY` value so a normal Chrome window opens for the user to log into directly — this is more reliable than the agent-browser observability dashboard (port 4848), whose remote mouse/keyboard forwarding has had real bugs (click-target offset, certain keys like `.` not registering). Fall back to the dashboard only if there's no usable local display. Wait on `agent-browser wait --url "**<target-domain>**"` (generous timeout, e.g. 300000ms) rather than polling after handing off for login.
 
 ---
 
-## Phase 1: Auto-Discovery via Playwright
+## Phase 1: Auto-Discovery via Browser Automation
 
 ### 1a. Find the latest release on SharePoint
 
@@ -33,7 +37,9 @@ Take a snapshot and read folder names. Identify:
 Then navigate into that folder to find:
 - **ESVD PDF URL** — the `.pdf` file named `{VERSION_STRING}-ESVD - Launch Pad Family...`; get its SharePoint share link (right-click → Copy link, or construct directly from the path pattern in Key Details below)
 - **Artifact ZIP URLs** — `9604-SDK-{VERSION_STRING}.zip` and `9704-SDK-{VERSION_STRING}.zip`; get their SharePoint share links
-- **MD5 checksums** — check if a checksums or readme file is present in the folder; if not, note they must be provided manually
+- **MD5 checksums** — each zip has a matching `{filename}.zip.md5.txt` file in the same folder; click it to open the preview and `read` the page, or `find text` + `get value` on the textbox in the "Link created" dialog — the checksum is right there, no download needed
+
+**Getting SharePoint share links:** select a row (click its "Select row" cell, not the checkbox directly — the checkbox is often covered by other elements), then click **Copy link** from the toolbar that appears. This sometimes opens a "Link created" dialog with the URL in a readable textbox (`get value @ref`), and sometimes just shows a "Link copied" toast with no readable element — in that case read the OS clipboard instead (`xclip -selection clipboard -o` if on a real X display; requires `--headed` mode, see above). **Gotcha:** selecting a second row without deselecting the first leaves both selected ("2 selected"), which removes "Copy link" from the toolbar entirely (only single-select shows it) — press `Escape` to clear selection between files.
 
 Derive from VERSION_STRING:
 - `9604-SDK-VER` and `9704-SDK-VER` by substituting `Launch-Pad-IDKs` → `9604-SDK` / `9704-SDK`
@@ -50,10 +56,12 @@ Find the release row matching the version string (or semantic version). Click it
 - **Jira Release URL** — `https://jira.iridium.com/projects/IDK/versions/{VERSION_ID}`
 
 On the release detail page, look for:
-- **VTT ticket links** — issues listed under "Issues in this version" of type that matches Verification Test Tracker; grab the two `IDK-XXXX` links that appear on slide 4 of the previous deck
-- **Test Report PDF attachment URL** — find the test report PDF attachment link (`jira.iridium.com/secure/attachment/.../Launch-Pad-SDK-vX.Y.Z-Test-Report.pdf`)
+- **VTT ticket link(s)** — issues of type Verification Test Tracker. **Don't assume there are always two** (previous decks sometimes had one per HDK, i.e. two — but a cycle can just as easily ship a single combined VTT covering both 9604 and 9704). Search `project = <ID> AND issuetype = "Verification Test Tracker"` or look for a "TEST: Launch Pad IDKs vX.Y.Z Verification Test Tracker"-style summary; confirm the actual count with the user if it's not obvious from the release's issue list.
+- **Test report attachment(s)** — attached to the VTT issue(s), under "Attachments". **Format and count vary by cycle**: some cycles attach a single combined PDF (`Launch-Pad-SDK-vX.Y.Z-Test-Report.pdf`), others attach the raw pytest-html reports directly, one per HDK (e.g. `9704_test_report.html`, `9604_test_results.html`). Check what's actually attached rather than assuming the PDF pattern in Key Details below — that pattern is a common case, not a guarantee. If there are two reports, slide 4 needs a second hyperlink + relationship added (see Phase 3 step 3).
 
-If the Jira release page doesn't directly show the VTT tickets and test report, navigate to the VTT issue itself (IDK-XXXX) and find the PDF attachment there.
+Jira attachment URLs (`jira.iridium.com/secure/attachment/...`) force a download and can't be `open`ed/read directly in-browser (`net::ERR_ABORTED`). If you need to inspect a report's contents, click it to trigger the download, then check the browser's default Downloads folder (e.g. `~/Downloads/`) for the saved file.
+
+If the Jira release page doesn't directly show the VTT ticket(s) and test report(s), navigate to the VTT issue itself (IDK-XXXX) and find the attachments there — or ask the user for the ticket/attachment links directly, which is often faster than searching.
 
 ### 1c. Confirm findings with user
 
@@ -67,9 +75,8 @@ Semantic version:  X.Y.Z
 MD5 9604:          [found / NOT FOUND — need manual input]
 MD5 9704:          [found / NOT FOUND — need manual input]
 Jira Release URL:  https://jira.iridium.com/projects/IDK/versions/NNNNN
-Jira VTT #1:       https://jira.iridium.com/browse/IDK-XXXX
-Jira VTT #2:       https://jira.iridium.com/browse/IDK-XXXX
-Test Report PDF:   https://jira.iridium.com/secure/attachment/.../...pdf
+Jira VTT:          https://jira.iridium.com/browse/IDK-XXXX  [confirm: one combined, or one per HDK?]
+Test Report(s):    https://jira.iridium.com/secure/attachment/.../...  [confirm: PDF or HTML? one or two files?]
 ESVD SharePoint:   https://irdm.sharepoint.com/...
 ZIP SharePoint:    https://irdm.sharepoint.com/...
 ```
@@ -134,7 +141,9 @@ File name convention (per IRDM-1023-MDIR-001):
 ```
 IRDM-1023-TREP-NNN v1.0 - Launch Pad SDK vX.Y.Z Test Rollup Report.pptx
 ```
-Increment the `TREP-NNN` number by 1 from the previous release. If the user doesn't provide a template PPTX path, use `~/.claude/templates/launch-pad-atrr-template.pptx` as the baseline (currently v2.0.0 / IRDM-1023-TREP-013). Always generate a new output file — never overwrite the template.
+Increment the `TREP-NNN` number by 1 from the previous release. If the user doesn't provide a template PPTX path, use `~/.claude/templates/launch-pad-atrr-template.pptx` as the baseline — **but check its actual version first** (see docProps/core.xml `dc:title`, or just look at slide 1). This cached copy goes stale between sessions (it was 8 releases old — v2.0.0 — the last time this was checked, well behind the then-current v2.0.8) since nothing updates it automatically. If it's more than 1 release behind, tell the user and ask if they have the real previous deck; if forced to proceed with a stale template anyway, **flag the "Hardware Tested" / "Transceiver Firmware Tested" / MD5 sections on slide 3 as high-risk** even when the user says hardware/firmware are "unchanged" — "unchanged from last release" was true relative to a release many cycles back, not the actual last one, and this produced visibly wrong firmware/hardware data in practice. After generating a new deck, consider copying the finished output back over the cached template path so the next run starts from something closer to current.
+
+Always generate a new output file — never overwrite the template.
 
 ### 1. Copy and unpack
 
@@ -147,6 +156,8 @@ python scripts/office/unpack.py output.pptx unpacked/
 `~/.claude/plugins/cache/anthropic-agent-skills/document-skills/*/skills/pptx/scripts/`
 
 ### 2. Run the bulk substitution script
+
+**Watch for non-breaking spaces (`\xa0`, U+00A0).** The template frequently uses `\xa0` instead of a regular space right before values (`\xa0N/A`, `\xa0SKIPPED`, `\xa0PASS`). These render identically to a normal space in `cat`/`Read` output, so a plain-ASCII-space replacement string will silently fail to match. Verify with `python3 -c "print(repr(open(path,encoding='utf-8').read()[idx-5:idx+5]))"` around the target text before writing a replacement, or just do these specific substitutions directly in Python (`text.replace("\xa0N/A", ...)`) rather than via a shell/Edit-tool string that can't represent the character reliably.
 
 Create and run this Python script to replace all version strings and dates across every XML and .rels file in one pass. Fill in old/new values from the template PPTX and the input data:
 
@@ -199,12 +210,16 @@ After bulk substitution, these items need targeted XML edits:
 |-----|-----------|--------|
 | rId2 | Jira Release version page | New URL |
 | rId3 | New ESVD PDF (SharePoint) | New URL |
-| rId4 | End-of-paragraph ESVD (same slide, may mirror rId3) | New URL |
-| rId5 | Jira VTT ticket #1 | New URL |
-| rId6 | Jira VTT ticket #2 | New URL |
-| rId7 | Jira Test Report PDF attachment | New URL |
+| rId4 | End-of-paragraph ESVD (same slide, may mirror rId3) | New URL — **verify it actually matches rId3's target**; found pointing to a stale, unrelated older release in practice, not actually mirroring rId3 |
+| rId5 | Jira VTT ticket | New URL |
+| rId6 | Second VTT ticket, if the template has one | New URL, or point at the same single VTT URL as rId5 if this cycle only has one (don't leave it stale) |
+| rId7 | Test report attachment #1 (9704) | New URL |
 
-**`ppt/slides/_rels/slide3.xml.rels`** — rId2 is the artifact ZIP on SharePoint; replace with new release folder URL.
+Don't assume rId7 is the only test-report slot. If there are **two test reports** this cycle (see Phase 1b), add a new relationship (next free rId, e.g. `rId8`) for the second report, and in `slide4.xml` split the "Test Report" paragraph's single hyperlinked run into two runs — one per report, each with its own `hlinkClick r:id`. Don't just overwrite rId7's target and drop the second report.
+
+**Before wiring up new targets, dump every rId's current target-and-anchor-text pairing** (a small script pairing each `hlinkClick r:id="rIdN"` with the `<a:t>` text inside its enclosing `<a:p>`) so you know which visible text each rId actually drives — don't rely on the table above matching the template you're given, since rIds get renumbered/reordered across edits and orphaned ones accumulate.
+
+**`ppt/slides/_rels/slide3.xml.rels`** — rId2 is the 9604 artifact ZIP on SharePoint; add a separate rId (e.g. `rId3`) for the 9704 ZIP rather than reusing rId2 for both — found both SDK-name runs sharing one `hlinkClick` (both pointing at the 9604 zip) in the template, which is wrong even though it doesn't visibly break anything until someone clicks the 9704 link.
 
 **`ppt/slides/slide5.xml`** — test domain results. For each domain (MPE, SA, OOBE, Customer), update:
 - `Result Date:` bold run (or set to `N/A` if SKIPPED)
@@ -237,7 +252,24 @@ Check every slide for stale version strings or dates:
 python3 -m markitdown output.pptx | grep -iE "OLD_SEMVER|OLD_VER|OLD_DATE"
 ```
 
+**Text-based QA does not catch color/visibility bugs** — a slide can extract perfectly correct text via markitdown while being visually blank. Also render every slide to an image and actually look at it:
+```bash
+soffice --headless --convert-to pdf --outdir . output.pptx
+pdftoppm -png -r 100 output.pdf slide
+```
+Then view a few of the resulting `slide-N.png` files (cover, a text-heavy slide, the results-summary slide) — this is what actually caught a LibreOffice-round-trip bug that made most body text invisible (see Known Issues below) when the text-only QA pass had shown nothing wrong.
+
 Then do a visual QA pass per the pptx skill's instructions.
+
+## Known Issues
+
+**LibreOffice re-save makes all body text invisible.** If this deck (or the user) is later opened and saved with LibreOffice Impress, LibreOffice's PPTX export bakes an explicit `<a:schemeClr val="dk1"/>` fill onto every text run that previously inherited its color from the placeholder/master. In the Iridium template, `dk1` (`theme1.xml` `<a:clrScheme>`) equals `#33393e` — the exact navy used for the slide background — so every heading and bullet becomes the same color as the background and disappears. Hyperlinked runs stay visible because links use the separate `hlink` theme color (`#fcb131`, orange), which is why a broken deck shows working links but blank everything else. This is a strong, distinctive symptom: if the user reports "the text vanished after I had it open," check `docProps/app.xml` for `<Application>LibreOffice...` before looking anywhere else.
+
+Fix: unpack the affected file and do `schemeClr val="dk1"` → `schemeClr val="lt1"` across `ppt/slides/*.xml` (verify first that every `dk1` hit in the file is inside an `rPr`/`endParaRPr`/`defRPr`/`solidFill` context, not a legitimate background fill, before doing the blanket replace — `grep -c` each slide, then spot-check contexts). This preserves the user's actual content edits; only the color token changes. Re-render to PNG to confirm before handing the file back.
+
+**`pack.py`'s validator can false-positive on `_rels/.rels` after LibreOffice touches the file** — it may report `customXml/item*.xml` references as broken even though they're the same structure LibreOffice itself wrote and the file opens fine. If you hit this while repacking a file that's already been through LibreOffice, use `--validate false` and do your own sanity check instead (open with `python-pptx`, and/or render to PDF/PNG per the QA step above) rather than trying to restructure `customXml` relationships you didn't create and don't need to touch.
+
+**Warn the user about LibreOffice** when handing off a finished deck if you know (or suspect, e.g. this is a Linux box) they'll edit it there: either recommend they use real PowerPoint for any further edits, or let them know to come back for the `dk1`→`lt1` fix if text goes missing after their next save.
 
 ## Slide Change Reference
 
@@ -270,7 +302,7 @@ Integrator%20Development%20Kits%20Engineering%20Software%20Version%20Description
 
 **Jira release URL pattern:** `https://jira.iridium.com/projects/IDK/versions/{VERSION_ID}`
 
-**Test Report PDF pattern:** `https://jira.iridium.com/secure/attachment/{ATTACHMENT_ID}/Launch-Pad-SDK-vX.Y.Z-Test-Report.pdf`
+**Test report attachment pattern:** `https://jira.iridium.com/secure/attachment/{ATTACHMENT_ID}/{filename}` — `{filename}` varies by cycle (a combined `Launch-Pad-SDK-vX.Y.Z-Test-Report.pdf`, or separate per-HDK pytest-html files like `9704_test_report.html` / `9604_test_results.html`); don't assume the PDF naming, check what's actually attached.
 
 **`.rels` files hold the actual URLs; slide XML holds only display text.** Both must be updated when a link changes.
 
