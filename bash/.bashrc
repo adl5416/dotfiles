@@ -41,6 +41,11 @@ PROMPT_COMMAND='history -a'
 
 # Useful Functions
 
+# Edit this .bashrc file
+ebrc() {
+    "${EDITOR:-vi}" "$HOME/.bashrc"
+    source "$HOME/.bashrc"
+}
 # Do a ls after a cd command
 cdl ()
 {
