@@ -1,7 +1,0 @@
-Create a partner document.
-
-Type: [AN | ICD]
-Title: [DOCUMENT TITLE]
-Topic: [DESCRIBE THE FEATURE, INTEGRATION, OR SPECIFICATION]
-
-Read the appropriate template guide, copy the base template, and populate it with the provided content. Save in the partner documentation repository.

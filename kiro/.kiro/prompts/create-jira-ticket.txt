@@ -1,5 +1,0 @@
-Draft a JIRA ticket from the following context:
-
-[PASTE CONTEXT OR DESCRIBE THE ISSUE/FEATURE HERE]
-
-Determine the ticket type (bug, feature, investigation) and produce a Summary and Description with Executive Summary, Impact Assessment, Context, Details (if needed), and Definition of Done. Output in a single fenced code block ready to copy-paste into JIRA.

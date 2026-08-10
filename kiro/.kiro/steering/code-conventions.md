@@ -12,6 +12,7 @@ description: Coding standards and style conventions. Use when writing, reviewing
 - Prefer f-strings over .format() or %
 - Use pathlib over os.path
 - Prefer list/dict comprehensions when readable
+- Prefer uv over pip
 
 ## C/C++
 - Use Modern C++17/20
@@ -25,8 +26,8 @@ description: Coding standards and style conventions. Use when writing, reviewing
 - Prefer simple, readable code over clever code
 - Functions should do one thing
 - Name things clearly — avoid abbreviations and acronyms unless universally understood (like USB)
-- Never ever use one letter variable names (Instead of "for p in pipelines", use "for pipeline in pipelines")
+- Never ever use one letter variable names (instead of `for p in pipelines`, use `for pipeline in pipelines`)
 - Use clear full words for variable names
 - Add unit tests for all new functionality
 - No dead code or commented-out code in commits
-- Don't add comments that restate what the code does.
+- Don't add comments that restate what the code does

@@ -1,4 +1,5 @@
 {
+  "chat.trustAllTools": true,
   "chat.enableTangentMode": true,
   "chat.enableDelegate": true,
   "chat.enableCodeIntelligence": true,
@@ -7,6 +8,6 @@
   "chat.enableContextUsageIndicator": true,
   "chat.enableThinking": true,
   "chat.greeting.enabled": true,
-  "chat.defaultAgent": "general",
-  "mcp.loadedBefore": true
+  "mcp.loadedBefore": true,
+  "chat.disableTrustAllConfirmation": true
 }

@@ -1,6 +1,6 @@
 ---
 name: devops
-description: DevOps pattern and conventions for CI/CD, containers, and infrastructure. Use when writing pipelines, Dockerfiles, or deployment configs.
+description: DevOps patterns and conventions for CI/CD, containers, and infrastructure. Use when writing pipelines, Dockerfiles, or deployment configs.
 ---
 
 ## Docker
@@ -13,23 +13,12 @@ description: DevOps pattern and conventions for CI/CD, containers, and infrastru
 ## GitLab CI
 - Use stages: lint, test, build, deploy
 - Cache dependencies between jobs
-- Use rules: over only:/except:
+- Use `rules:` over `only:`/`except:`
 - Keep jobs idempotent
 - Store secrets in CI/CD variables, never in repo
-
-## Ansible
-- Idempotent playbooks — safe to run repeatedly
-- Use roles for reusable logic
-- Variables in group_vars/host_vars, not hardcoded
-- Tag tasks for selective runs
 
 ## Infrastructure
 - Infrastructure as code — no manual changes
 - Environments should be reproducible from config alone
 - Use health checks and readiness probes
 - Log to stdout, aggregate externally
-
-## Security
-- Least privilege for service accounts
-- Rotate secrets on a schedule
-- Scan images for vulnerabilities in CI
