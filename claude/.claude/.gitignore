@@ -23,5 +23,6 @@ session-env/
 sessions/
 shell-snapshots/
 tasks/
+telemetry
 context-mode/
 hooks/
