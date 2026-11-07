@@ -2,6 +2,13 @@
   "global": {
     "ctrl-space w": "tab.new",
     "ctrl-space e": "layout.toggle:sidebar",
+    "ctrl-space x": "pane.close",
+    "ctrl-space h": "pane.go:left",
+    "ctrl-space j": "pane.go:down",
+    "ctrl-space k": "pane.go:up",
+    "ctrl-space l": "pane.go:right",
+    "ctrl-space -": "pane.split:down",
+    "ctrl-space \\": "pane.split:right",
     "ctrl-space 1": "tab.select:1",
     "ctrl-space 2": "tab.select:2",
     "ctrl-space 3": "tab.select:3",
@@ -72,6 +79,10 @@
     "shift-f2": "space.rename"
   },
   "terminal": {
+    "ctrl-h": "pane-navigator.left",
+    "ctrl-j": "pane-navigator.down",
+    "ctrl-k": "pane-navigator.up",
+    "ctrl-l": "pane-navigator.right",
     "ctrl-backspace": "send:\u0017",
     "ctrl-left": "send:\u001bb",
     "ctrl-right": "send:\u001bf",
