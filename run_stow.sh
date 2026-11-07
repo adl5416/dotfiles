@@ -9,6 +9,7 @@ stow_packages=(
     ghostty
     git
     herdr
+    herdr-app
     hypridle
     hyprland
     hyprlock
